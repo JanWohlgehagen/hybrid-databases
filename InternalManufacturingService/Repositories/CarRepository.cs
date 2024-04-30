@@ -13,16 +13,17 @@ public class CarRepository: ICarRepository
     
     public CarRepository(string databaseName = "ManufacturedCars", string collectionName = "Cars")
     {
-        _client = new MongoDBClient("mongodb://localhost:27017");
+        _client = new MongoDBClient("mongodb://mongodb:27017");
         _databaseName = databaseName;
         _collectionName = collectionName;
     }
     
     public ExternalCar GetByRegistrationNumber(string regNumber)
     {
-        var collection = _client.Collection<ExternalCar>(_databaseName, _collectionName);
         
-        return collection.Find(x => x.BasicInformation.RegistrationNumber == regNumber).FirstOrDefault();
+        var collection = _client.Collection<ExternalCar>(_databaseName, _collectionName);
+        var car = collection.Find(x => x.BasicInformation.RegistrationNumber == regNumber).FirstOrDefault();
+        return car;
     }
 
     public void InsertOne(ExternalCar car)

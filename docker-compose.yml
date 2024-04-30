@@ -1,0 +1,41 @@
+﻿version: "3.9"
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    networks:
+      - car-network
+    ports:
+      - 27017:27017
+  
+  external-manufacturing-service:
+    container_name: external-manufacturing-service
+    build:
+      dockerfile: ExternalManufactoringService/Dockerfile
+      context: .
+    networks:
+      - car-network
+    ports:
+      - 9080:80
+      - 9081:443
+    depends_on: 
+      - mongodb
+
+  internal-manufacturing-service:
+    container_name: internal-manufacturing-service
+    build:
+      dockerfile: InternalManufacturingService/Dockerfile
+      context: .
+    networks:
+      - car-network
+    ports:
+      - 9090:80
+      - 9091:443
+    depends_on:
+      - mongodb
+
+
+networks:
+  car-network:
+    driver: bridge

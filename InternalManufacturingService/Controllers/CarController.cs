@@ -18,7 +18,6 @@ public class CarController : ControllerBase
     [HttpGet(Name = "GetCarParts")]
     public IActionResult Get(String registrationNumber)
     {
-        // Look up car in service and return it
-        return Ok();
+        return Ok(_carService.GetCar(registrationNumber));
     }
 }

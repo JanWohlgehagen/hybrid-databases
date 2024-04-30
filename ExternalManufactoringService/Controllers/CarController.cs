@@ -127,6 +127,8 @@ public class CarController : ControllerBase
         car.OptionalPackagesAndAccessories.HasOffRoadPackage = false;
         car.OptionalPackagesAndAccessories.HasAppearancePackage = false;
         car.OptionalPackagesAndAccessories.HasSportPackage = false;
+
+        Console.WriteLine("I was hit and I returned a car!");
         return Ok(car);
     }
 }

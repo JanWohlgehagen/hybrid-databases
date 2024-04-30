@@ -1,5 +1,8 @@
 ﻿namespace Models;
+using MongoDB.Bson.Serialization.Attributes;
 
+//Ignored the _id field from the MongoDB
+[BsonIgnoreExtraElements]
 public class ExternalCar
 {
      // Basic Information
