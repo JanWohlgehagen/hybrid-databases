@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ExternalManufactoringService",
+    "\\ExternalManufactoringService\\Controllers",
+    "\\InternalManufacturingService",
+    "\\InternalManufacturingService\\Services",
+    "\\Workflow",
+    "\\WorkflowModels",
+    "\\WorkflowModels\\Models",
+    "\\Workflow\\Context",
+    "\\Workflow\\Services"
+  ],
+  "SelectedNode": "\\Workflow\\Context\\Context.cs",
+  "PreviewInSolutionExplorer": false
+}

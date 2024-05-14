@@ -8,6 +8,21 @@ services:
       - car-network
     ports:
       - 27017:27017
+
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: WorkflowDB
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    networks:
+      - car-network
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
   
   external-manufacturing-service:
     container_name: external-manufacturing-service
@@ -35,7 +50,22 @@ services:
     depends_on:
       - mongodb
 
+  workflow:
+    container_name: workflow
+    build:
+      dockerfile: Workflow/Dockerfile
+      context: .
+    networks:
+      - car-network
+    ports:
+      - 9070:80
+      - 9071:443
+    depends_on:
+     - postgres
 
 networks:
   car-network:
     driver: bridge
+
+volumes:
+  postgres-data:
